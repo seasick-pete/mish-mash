@@ -1,6 +1,6 @@
 console.log("working");
 import * as d3 from 'd3';
-const jsonData = require('json-loader!./data.json');
+// const jsonData = require('json-loader!./data.json');
 
 // const square = d3.selectAll("rect");
 // square.style("fill", "red");
@@ -15,7 +15,7 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 
-d3.json(jsonData, function(error, graph) {
+d3.json('data.json', function(error, graph) {
 if (error) throw error;
 
 graph.links.forEach(function(d){

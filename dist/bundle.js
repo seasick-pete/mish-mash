@@ -9022,7 +9022,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 console.log("working");
 
-var jsonData = __webpack_require__(460);
+// const jsonData = require('json-loader!./data.json');
 
 // const square = d3.selectAll("rect");
 // square.style("fill", "red");
@@ -9035,7 +9035,7 @@ var simulation = d3.forceSimulation().force("link", d3.forceLink().id(function (
     return d.id;
 })).force("charge", d3.forceManyBody().strength(-400)).force("center", d3.forceCenter(width / 2, height / 2));
 
-d3.json(jsonData, function (error, graph) {
+d3.json('data.json', function (error, graph) {
     if (error) throw error;
 
     graph.links.forEach(function (d) {
@@ -22751,12 +22751,6 @@ function nopropagation() {
   __WEBPACK_IMPORTED_MODULE_0_d3_selection__["c" /* event */].stopImmediatePropagation();
 });
 
-
-/***/ }),
-/* 460 */
-/***/ (function(module, exports) {
-
-module.exports = {"nodes":[{"id":1,"name":"A"},{"id":2,"name":"B"},{"id":3,"name":"C"},{"id":4,"name":"D"},{"id":5,"name":"E"},{"id":6,"name":"F"},{"id":7,"name":"G"},{"id":8,"name":"H"},{"id":9,"name":"I"},{"id":10,"name":"J"}],"links":[{"source_id":1,"target_id":2},{"source_id":1,"target_id":5},{"source_id":1,"target_id":6},{"source_id":2,"target_id":3},{"source_id":2,"target_id":7},{"source_id":3,"target_id":4},{"source_id":8,"target_id":3},{"source_id":4,"target_id":5},{"source_id":4,"target_id":9},{"source_id":5,"target_id":10}]}
 
 /***/ })
 /******/ ]);
