@@ -1,5 +1,7 @@
 console.log("working");
 import * as d3 from 'd3';
+import * as myChart from './mychart';
+
 // const jsonData = require('json-loader!./data.json');
 
 // const square = d3.selectAll("rect");
