@@ -2,14 +2,11 @@ console.log("working");
 import * as d3 from 'd3';
 import * as myChart from './mychart';
 
-// const jsonData = require('json-loader!./data.json');
-
-// const square = d3.selectAll("rect");
-// square.style("fill", "red");
+const graph = require('json-loader!./data.json');
 
 var svg = d3.select("svg"),
-width = +svg.attr("width"),
-height = +svg.attr("height");
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
@@ -17,13 +14,15 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 
-d3.json('./data.json', function(error, graph) {
-if (error) throw error;
+// d3.data(jsonData, function(error, graph) {
 
-graph.links.forEach(function(d){
-d.source = d.source_id;    
-d.target = d.target_id;
-});           
+  // if (error) throw error;
+
+  graph.links.forEach(function(d){
+
+    d.source = d.source_id;
+    d.target = d.target_id;
+  });
 
 var link = svg.append("g")
             .style("stroke", "#aaa")
@@ -77,18 +76,36 @@ label
         .attr("y", function (d) { return d.y; })
         .style("font-size", "20px").style("fill", "#4393c3");
 }
-});
+// });
 
-function dragstarted(d) {
-if (!d3.event.active) simulation.alphaTarget(0.3).restart()
-simulation.fix(d);
+function dragsubject() {
+  return simulation.find(d3.event.x, d3.event.y);
 }
 
-function dragged(d) {
-simulation.fix(d, d3.event.x, d3.event.y);
+
+function dragstarted() {
+if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+d3.event.subject.fx = d3.event.subject.x;
+d3.event.subject.fy = d3.event.subject.y;
 }
 
-function dragended(d) {
+function dragged() {
+d3.event.subject.fx = d3.event.x;
+d3.event.subject.fy = d3.event.y;
+}
+
+function dragended() {
 if (!d3.event.active) simulation.alphaTarget(0);
-simulation.unfix(d);
+d3.event.subject.fx = null;
+d3.event.subject.fy = null;
+}
+
+function drawLink(d) {
+context.moveTo(d.source.x, d.source.y);
+context.lineTo(d.target.x, d.target.y);
+}
+
+function drawNode(d) {
+context.moveTo(d.x + 3, d.y);
+context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
 }

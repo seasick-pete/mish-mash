@@ -1,27 +1,30 @@
 const path = require('path');
 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
+  title: 'Emissions Dashboard',
+  template: './src/index.ejs',
   filename: 'index.html',
   inject: 'body'
 })
 
-
-
-
-
 module.exports = { 
   entry: './src/index.js', 
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'docs'),
+    filename: 'bundle.js'
   },
   module: { 
     loaders: [ 
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
   }, 
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    new CleanWebpackPlugin(['docs']),
+    HtmlWebpackPluginConfig
+  ]
 }
 
