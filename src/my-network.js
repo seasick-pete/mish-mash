@@ -18,8 +18,8 @@ export default function() {
         .force('center', d3.forceCenter(width / 2, height / 2));
 
     graph.links.forEach(function(d) {
-    d.source = d.source_id;
-    d.target = d.target_id;
+        d.source = d.source_id;
+        d.target = d.target_id;
     });
 
     const link = svg.append('g')

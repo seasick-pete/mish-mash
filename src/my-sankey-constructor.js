@@ -6,11 +6,11 @@ import * as d3 from 'd3';
  */
 export default function() {
     const sankey = {};
-    const nodeWidth = 24;
-    const nodePadding = 8;
-    const size = [1, 1];
-    const nodes = [];
-    const links = [];
+    let nodeWidth = 24;
+    let nodePadding = 8;
+    let size = [1, 1];
+    let nodes = [];
+    let links = [];
 
     sankey.nodeWidth = function(_) {
       if (!arguments.length) return nodeWidth;
@@ -61,7 +61,7 @@ export default function() {
      * @return {string} Returns a link object.
      */  
     sankey.link = function() {
-        const curvature = .5;
+        let curvature = .5;
 
         /**
          * Not sure what this does
@@ -106,8 +106,8 @@ export default function() {
       });
 
       links.forEach(function(link) {
-        const source = link.source;
-        const target = link.target;
+        let source = link.source;
+        let target = link.target;
 
         if (typeof source === 'number') {
           source = link.source = nodes[link.source];
@@ -141,9 +141,9 @@ export default function() {
      * nodes with no outgoing links are assigned the maximum breadth.
      */
     function computeNodeBreadths() {
-      const remainingNodes = nodes;
+      let remainingNodes = nodes;
       let nextNodes = [];
-      const x = 0;
+      let x = 0;
 
       while (remainingNodes.length) {
         nextNodes = [];
@@ -301,8 +301,8 @@ export default function() {
         nodesByBreadth.forEach(function(nodes) {
           let node;
           let dy;
-          const y0 = 0;
-          const n = nodes.length;
+          let y0 = 0;
+          let n = nodes.length;
           let i;
 
           // Push any overlapping nodes down.
