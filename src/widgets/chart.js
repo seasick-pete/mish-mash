@@ -38,7 +38,7 @@ Chart.prototype.draw = function() {
 
     // create the other stuff
     this.createScales();
-    // this.addAxes();
+    this.addAxes();
     this.addLine();
 };
 
@@ -72,38 +72,18 @@ Chart.prototype.createScales = function() {
 
 Chart.prototype.addAxes = function() {
     let m = this.margin;
-
-    // create and append axis elements
-    // this is all pretty straightforward D3 stuff
-    let xAxis = d3.axisBottom(this.x);
-
-    let yAxis = d3.axisLeft(this.y)
-        .ticks(10, '%');
-
-    // let xAxis = d3.svg.append('g')
-    //     .attr('transform', 'translate(0,' + height + ')')
-    //     .call(d3.axisBottom(x));
-    // let xAxis = d3.svg.axis()
-    //     .scale(this.xScale)
-    //     .orient('bottom')
-    //     .ticks(d3.time.month, 1);
-
-    // let yAxis = d3.svg.axis()
-    //     .scale(this.yScale)
-    //     .orient('left')
-    //     .tickFormat(d3.format('d'));
-
+    let axisHeight = this.height - m.top - m.bottom;
+    // 3. Call the x axis in a group tag
     this.plot.append('g')
-        .attr('class', 'x axis')
-        .attr(
-            'transform',
-            'translate(0,' + (this.height-(m.top+m.bottom)) + ')'
-        )
-        .call(xAxis);
+    .attr('class', 'x axis')
+    .attr('transform', 'translate(0,' + axisHeight + ')')
+    .call(d3.axisBottom(this.xScale));
 
+
+    // 4. Call the y axis in a group tag
     this.plot.append('g')
-        .attr('class', 'y axis')
-        .call(yAxis);
+    .attr('class', 'y axis')
+    .call(d3.axisLeft(this.yScale));
 };
 
 Chart.prototype.addLine = function() {
