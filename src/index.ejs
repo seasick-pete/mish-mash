@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <title>Emissions Dashboard</title>
   <style>
-    
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #ccc;
+    }
     .node rect {
       cursor: move;
       fill-opacity: .9;
@@ -40,8 +48,9 @@
 </head>
 <body>
   <!-- <svg width="960" height="600"></svg> -->
+  <div><canvas id="canvas" width="800" height="600"></canvas></div>
   <div class="chart-container"></div>
   <div class="sankey-container"></div>
-  <div class="network-container"></div>
+  
 </body>
 </html>

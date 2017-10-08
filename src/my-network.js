@@ -86,9 +86,9 @@ export default function() {
      *
      */
     function dragstarted() {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    d3.event.subject.fx = d3.event.subject.x;
-    d3.event.subject.fy = d3.event.subject.y;
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d3.event.subject.fx = d3.event.subject.x;
+        d3.event.subject.fy = d3.event.subject.y;
     }
 
     /**

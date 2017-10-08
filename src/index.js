@@ -6,7 +6,7 @@
 
 // import Chart from './constructors/chart';
 import Chart from './widgets/chart';
-import Network from './widgets/network';
+import Network from './widgets/network.canvas';
 import Sankey from './widgets/sankey';
 
 const dataNetwork = require('json-loader!./data-network.json');
@@ -26,9 +26,17 @@ let chart = new Chart({
 // console.log(chart);
 
 let network = new Network({
-    element: document.querySelector('.network-container'),
+    element: document.getElementById('canvas'),
     data: dataNetwork,
 });
+
+let a = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+let src = a[Math.floor(a.length * Math.random())];
+let dst = a[Math.floor(a.length * Math.random())];
+network.add(src, dst);
+
+setInterval(fire, 1000);
+
 // console.log(network);
 
 let sankey = new Sankey({
